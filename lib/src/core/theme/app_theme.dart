@@ -1,58 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:job_listing_app/src/core/constants/app_colors.dart';
 
-
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primarySwatch: AppColors.primarySwatch,
-    scaffoldBackgroundColor: AppColors.backgroundLight,
     fontFamily: 'Poppins',
-    colorScheme: ColorScheme.light(
+
+    colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       surface: AppColors.surfaceLight,
-      onSurface: AppColors.textPrimary,
-      onPrimary: AppColors.textOnPrimary,
-      onSecondary: Colors.white,
+      background: AppColors.backgroundLight,
+      onSurface: AppColors.textLight,
+      onBackground: AppColors.textLight,
+      onPrimary: Colors.white,
       error: AppColors.error,
       onError: Colors.white,
-      onSurfaceVariant: AppColors.textSecondary,
     ),
-    textTheme: const TextTheme(
-      displayLarge: TextStyle(color: AppColors.textPrimary, fontSize: 32, fontWeight: FontWeight.bold),
-      displayMedium: TextStyle(color: AppColors.textPrimary, fontSize: 28, fontWeight: FontWeight.bold),
-      displaySmall: TextStyle(color: AppColors.textPrimary, fontSize: 24, fontWeight: FontWeight.bold),
-      headlineLarge: TextStyle(color: AppColors.textPrimary, fontSize: 24, fontWeight: FontWeight.w600),
-      headlineMedium: TextStyle(color: AppColors.textPrimary, fontSize: 20, fontWeight: FontWeight.w600),
-      headlineSmall: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w600),
-      titleLarge: TextStyle(color: AppColors.textPrimary, fontSize: 18, fontWeight: FontWeight.w500),
-      titleMedium: TextStyle(color: AppColors.textPrimary, fontSize: 16, fontWeight: FontWeight.w500),
-      titleSmall: TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w500),
-      bodyLarge: TextStyle(color: AppColors.textPrimary, fontSize: 16),
-      bodyMedium: TextStyle(color: AppColors.textPrimary, fontSize: 14),
-      bodySmall: TextStyle(color: AppColors.textSecondary, fontSize: 12),
-      labelLarge: TextStyle(color: AppColors.textPrimary, fontSize: 14, fontWeight: FontWeight.w500),
-      labelMedium: TextStyle(color: AppColors.textPrimary, fontSize: 12, fontWeight: FontWeight.w500),
-      labelSmall: TextStyle(color: AppColors.textSecondary, fontSize: 10, fontWeight: FontWeight.w500),
+
+    scaffoldBackgroundColor: AppColors.backgroundLight,
+
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.surfaceLight,
+      foregroundColor: AppColors.textLight,
+      elevation: 0,
+      centerTitle: false,
+      titleTextStyle: TextStyle(color: AppColors.textLight, fontSize: 20, fontWeight: FontWeight.w600, fontFamily: 'Poppins'),
     ),
-    appBarTheme: const AppBarTheme(backgroundColor: AppColors.primary, foregroundColor: Colors.white, elevation: 2, centerTitle: true),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 2,
+        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, fontFamily: 'Poppins'),
       ),
     ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.primary,
-        side: const BorderSide(color: AppColors.primary),
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.surfaceLight,
@@ -68,69 +54,58 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColors.primary, width: 2),
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppColors.error, width: 2),
-      ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      hintStyle: TextStyle(color: AppColors.textSecondaryLight),
     ),
-    cardTheme: const CardThemeData(
-      color: AppColors.surfaceLight,
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(color: AppColors.textLight, fontSize: 24, fontWeight: FontWeight.bold),
+      headlineMedium: TextStyle(color: AppColors.textLight, fontSize: 20, fontWeight: FontWeight.w600),
+      titleLarge: TextStyle(color: AppColors.textLight, fontSize: 18, fontWeight: FontWeight.w600),
+      titleMedium: TextStyle(color: AppColors.textLight, fontSize: 16, fontWeight: FontWeight.w500),
+      bodyLarge: TextStyle(color: AppColors.textLight, fontSize: 16),
+      bodyMedium: TextStyle(color: AppColors.textLight, fontSize: 14),
+      bodySmall: TextStyle(color: AppColors.textSecondaryLight, fontSize: 12),
     ),
   );
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primarySwatch: AppColors.primarySwatch,
-    scaffoldBackgroundColor: AppColors.backgroundDark,
     fontFamily: 'Poppins',
-    colorScheme: ColorScheme.dark(
+
+    colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       surface: AppColors.surfaceDark,
-      onSurface: AppColors.textOnDark,
-      onPrimary: AppColors.textOnPrimary,
-      onSecondary: Colors.black,
+      background: AppColors.backgroundDark,
+      onSurface: AppColors.textDark,
+      onBackground: AppColors.textDark,
+      onPrimary: Colors.white,
       error: AppColors.error,
       onError: Colors.white,
-      onSurfaceVariant: Colors.grey.shade400,
     ),
-    textTheme: const TextTheme(
-      displayLarge: TextStyle(color: AppColors.textOnDark, fontSize: 32, fontWeight: FontWeight.bold),
-      displayMedium: TextStyle(color: AppColors.textOnDark, fontSize: 28, fontWeight: FontWeight.bold),
-      displaySmall: TextStyle(color: AppColors.textOnDark, fontSize: 24, fontWeight: FontWeight.bold),
-      headlineLarge: TextStyle(color: AppColors.textOnDark, fontSize: 24, fontWeight: FontWeight.w600),
-      headlineMedium: TextStyle(color: AppColors.textOnDark, fontSize: 20, fontWeight: FontWeight.w600),
-      headlineSmall: TextStyle(color: AppColors.textOnDark, fontSize: 18, fontWeight: FontWeight.w600),
-      titleLarge: TextStyle(color: AppColors.textOnDark, fontSize: 18, fontWeight: FontWeight.w500),
-      titleMedium: TextStyle(color: AppColors.textOnDark, fontSize: 16, fontWeight: FontWeight.w500),
-      titleSmall: TextStyle(color: AppColors.textOnDark, fontSize: 14, fontWeight: FontWeight.w500),
-      bodyLarge: TextStyle(color: AppColors.textOnDark, fontSize: 16),
-      bodyMedium: TextStyle(color: AppColors.textOnDark, fontSize: 14),
-      bodySmall: TextStyle(color: Colors.grey, fontSize: 12),
-      labelLarge: TextStyle(color: AppColors.textOnDark, fontSize: 14, fontWeight: FontWeight.w500),
-      labelMedium: TextStyle(color: AppColors.textOnDark, fontSize: 12, fontWeight: FontWeight.w500),
-      labelSmall: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.w500),
+
+    scaffoldBackgroundColor: AppColors.backgroundDark,
+
+    appBarTheme: const AppBarTheme(
+      backgroundColor: AppColors.surfaceDark,
+      foregroundColor: AppColors.textDark,
+      elevation: 0,
+      centerTitle: false,
+      titleTextStyle: TextStyle(color: AppColors.textDark, fontSize: 20, fontWeight: FontWeight.w600, fontFamily: 'Poppins'),
     ),
-    appBarTheme: const AppBarTheme(backgroundColor: AppColors.surfaceDark, foregroundColor: Colors.white, elevation: 2, centerTitle: true),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 2,
+        textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, fontFamily: 'Poppins'),
       ),
     ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.primary,
-        side: const BorderSide(color: AppColors.primary),
-        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.surfaceDark,
@@ -146,16 +121,18 @@ class AppTheme {
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(color: AppColors.primary, width: 2),
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: AppColors.error, width: 2),
-      ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      hintStyle: TextStyle(color: AppColors.textSecondaryDark),
     ),
-    cardTheme: const CardThemeData(
-      color: AppColors.surfaceDark,
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(color: AppColors.textDark, fontSize: 24, fontWeight: FontWeight.bold),
+      headlineMedium: TextStyle(color: AppColors.textDark, fontSize: 20, fontWeight: FontWeight.w600),
+      titleLarge: TextStyle(color: AppColors.textDark, fontSize: 18, fontWeight: FontWeight.w600),
+      titleMedium: TextStyle(color: AppColors.textDark, fontSize: 16, fontWeight: FontWeight.w500),
+      bodyLarge: TextStyle(color: AppColors.textDark, fontSize: 16),
+      bodyMedium: TextStyle(color: AppColors.textDark, fontSize: 14),
+      bodySmall: TextStyle(color: AppColors.textSecondaryDark, fontSize: 12),
     ),
   );
 }

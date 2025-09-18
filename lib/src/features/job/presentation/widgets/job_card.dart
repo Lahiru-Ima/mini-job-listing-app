@@ -11,64 +11,59 @@ class JobCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute<void>(builder: (context) => JobDetailsPage(job: job)));
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        child: Container(
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: Offset(0, 2))],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      job.title,
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: size.width * 0.3,
-                          child: Text(
-                            job.companyName,
-                            style: TextStyle(fontSize: isTablet ? 16 : 14, color: Colors.grey[600]),
-                            overflow: TextOverflow.ellipsis,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(job.title, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: size.width * 0.3,
+                            child: Text(
+                              job.companyName,
+                              style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withOpacity(0.7)),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 12),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(color: Colors.grey[300]!),
+                          const SizedBox(width: 12),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.primary.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(color: theme.colorScheme.primary.withOpacity(0.3)),
+                            ),
+                            child: Text(
+                              job.jobType,
+                              style: TextStyle(fontSize: 12, color: theme.colorScheme.primary, fontWeight: FontWeight.w500),
+                            ),
                           ),
-                          child: Text(
-                            job.jobType,
-                            style: TextStyle(fontSize: 12, color: Colors.grey[700], fontWeight: FontWeight.w500),
-                          ),
-                        ),
-                        SizedBox(width: 12),
-                        Icon(Icons.location_on, size: 16, color: Colors.grey[500]),
-                        SizedBox(width: 4),
-                        Text(job.location, style: TextStyle(fontSize: 14, color: Colors.grey[600])),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 12),
+                          Icon(Icons.location_on, size: 16, color: theme.colorScheme.onSurface.withOpacity(0.6)),
+                          const SizedBox(width: 4),
+                          Text(job.location, style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurface.withOpacity(0.7))),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
-            ],
+                Icon(Icons.arrow_forward_ios, size: 16, color: theme.colorScheme.onSurface.withOpacity(0.4)),
+              ],
+            ),
           ),
         ),
       ),

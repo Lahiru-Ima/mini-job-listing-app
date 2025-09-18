@@ -4,6 +4,7 @@ import 'package:job_listing_app/src/core/di/injector.dart';
 import 'package:job_listing_app/src/core/enums/bloc_state_status.dart';
 import 'package:job_listing_app/src/features/job/presentation/bloc/job_bloc.dart';
 import 'package:job_listing_app/src/features/job/presentation/widgets/job_card.dart';
+import 'package:job_listing_app/src/shared/theme/theme_cubit.dart';
 
 class JobListingPageWrapper extends StatelessWidget {
   const JobListingPageWrapper({super.key});
@@ -24,6 +25,10 @@ class JobListingPage extends StatefulWidget {
 class _JobListingPageState extends State<JobListingPage> {
   final TextEditingController _searchController = TextEditingController();
 
+  void _toggleTheme() {
+    context.read<ThemeCubit>().toggleTheme();
+  }
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -32,31 +37,34 @@ class _JobListingPageState extends State<JobListingPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
     final isTablet = size.width > 600;
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: Text(
           'Job Listings',
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: isTablet ? 24 : 20),
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: isTablet ? 24 : 20, color: theme.colorScheme.onSurface),
         ),
         centerTitle: false,
-        forceMaterialTransparency: true,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
+        backgroundColor: theme.colorScheme.surface,
+        foregroundColor: theme.colorScheme.onSurface,
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.favorite, size: isTablet ? 28 : 24),
+            icon: Icon(Icons.favorite_border, size: isTablet ? 28 : 24),
             onPressed: () {},
             tooltip: 'WishList',
           ),
-          IconButton(
-            icon: Icon(Icons.light_mode, size: isTablet ? 28 : 24),
-            onPressed: () {},
-            tooltip: 'Theme',
+          BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, themeState) {
+              return IconButton(
+                icon: Icon(themeState.mode == ThemeMode.light ? Icons.dark_mode : Icons.light_mode, size: isTablet ? 28 : 24),
+                onPressed: _toggleTheme,
+                tooltip: themeState.mode == ThemeMode.light ? 'Dark Mode' : 'Light Mode',
+              );
+            },
           ),
           SizedBox(width: size.width * 0.02),
         ],
@@ -74,50 +82,37 @@ class _JobListingPageState extends State<JobListingPage> {
                       context.read<JobBloc>().add(SearchJobsEvent(value));
                     },
                     decoration: InputDecoration(
-                      hintText: 'Search jobs...',
-                      hintStyle: TextStyle(fontSize: isTablet ? 16 : 14, color: Colors.grey[500]),
-                      prefixIcon: Icon(Icons.search, color: Colors.grey[400], size: isTablet ? 24 : 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                        borderSide: BorderSide(color: Colors.grey[300]!),
-                      ),
-
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: isTablet ? 16 : 12),
+                      hintText: 'Search by title or location...',
+                      prefixIcon: Icon(Icons.search, size: isTablet ? 24 : 20),
                     ),
                   ),
                 ),
                 SizedBox(width: size.width * 0.02),
                 SizedBox(
-                  width: size.width * 0.3,
+                  width: size.width * 0.25,
                   child: ElevatedButton(
                     onPressed: () {
                       context.read<JobBloc>().add(SearchJobsEvent(_searchController.text.trim()));
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF8B5A96),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    child: Text(
-                      'Search',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.white),
-                    ),
+                    child: Text('Search', style: TextStyle(fontSize: isTablet ? 14 : 12)),
                   ),
                 ),
               ],
             ),
           ),
-
           Expanded(
             child: BlocBuilder<JobBloc, JobState>(
               builder: (context, state) {
                 if (state.status == BlocStateStatus.loadInProgress) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state.status == BlocStateStatus.loadFailure) {
-                  return Center(child: Text(state.errorMessage ?? 'An error occurred'));
+                  return Center(
+                    child: Text(state.errorMessage ?? 'An error occurred', style: TextStyle(color: theme.colorScheme.error)),
+                  );
                 } else if (state.status == BlocStateStatus.loadSuccess) {
                   final jobs = state.jobData ?? [];
                   if (jobs.isEmpty) {
-                    return const Center(child: Text('No jobs found'));
+                    return Center(child: Text('No jobs found', style: theme.textTheme.bodyLarge));
                   }
                   return ListView.builder(
                     itemCount: jobs.length,
