@@ -13,6 +13,9 @@ abstract class JobEntity with _$JobEntity {
     required String location,
     required String description,
     required int salary,
+    required String jobType,
+    required int postDate,
+    required int expireyDate,
   }) = _JobEntity;
 
   factory JobEntity.fromJson(Map<String, Object?> json) => _$JobEntityFromJson(json);

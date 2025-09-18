@@ -39,7 +39,7 @@ class JobListingPage extends StatelessWidget {
               ),
             ),
           ),
-          //job list
+          //job listings
           Expanded(
             child: BlocBuilder<JobBloc, JobState>(
               builder: (context, state) {
@@ -56,7 +56,11 @@ class JobListingPage extends StatelessWidget {
                     itemCount: jobs.length,
                     itemBuilder: (context, index) {
                       final job = jobs[index];
-                      return ListTile(title: Text(job.title), subtitle: Text(job.companyName), trailing: Text(job.location));
+                      return ListTile(
+                        title: Text(job.title, style: TextStyle(fontWeight: FontWeight.bold)),
+                        subtitle: Text(job.companyName),
+                        trailing: Text(job.location),
+                      );
                     },
                   );
                 } else {

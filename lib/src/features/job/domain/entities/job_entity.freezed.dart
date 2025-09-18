@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$JobEntity {
 
- String get id; String get title; String get companyName; String get location; String get description; int get salary;
+ String get id; String get title; String get companyName; String get location; String get description; int get salary; String get jobType; int get postDate; int get expireyDate;
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $JobEntityCopyWith<JobEntity> get copyWith => _$JobEntityCopyWithImpl<JobEntity>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is JobEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.salary, salary) || other.salary == salary));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is JobEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.salary, salary) || other.salary == salary)&&(identical(other.jobType, jobType) || other.jobType == jobType)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.expireyDate, expireyDate) || other.expireyDate == expireyDate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,companyName,location,description,salary);
+int get hashCode => Object.hash(runtimeType,id,title,companyName,location,description,salary,jobType,postDate,expireyDate);
 
 @override
 String toString() {
-  return 'JobEntity(id: $id, title: $title, companyName: $companyName, location: $location, description: $description, salary: $salary)';
+  return 'JobEntity(id: $id, title: $title, companyName: $companyName, location: $location, description: $description, salary: $salary, jobType: $jobType, postDate: $postDate, expireyDate: $expireyDate)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $JobEntityCopyWith<$Res>  {
   factory $JobEntityCopyWith(JobEntity value, $Res Function(JobEntity) _then) = _$JobEntityCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String companyName, String location, String description, int salary
+ String id, String title, String companyName, String location, String description, int salary, String jobType, int postDate, int expireyDate
 });
 
 
@@ -65,7 +65,7 @@ class _$JobEntityCopyWithImpl<$Res>
 
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? companyName = null,Object? location = null,Object? description = null,Object? salary = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? companyName = null,Object? location = null,Object? description = null,Object? salary = null,Object? jobType = null,Object? postDate = null,Object? expireyDate = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -73,6 +73,9 @@ as String,companyName: null == companyName ? _self.companyName : companyName // 
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,salary: null == salary ? _self.salary : salary // ignore: cast_nullable_to_non_nullable
+as int,jobType: null == jobType ? _self.jobType : jobType // ignore: cast_nullable_to_non_nullable
+as String,postDate: null == postDate ? _self.postDate : postDate // ignore: cast_nullable_to_non_nullable
+as int,expireyDate: null == expireyDate ? _self.expireyDate : expireyDate // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -158,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String companyName,  String location,  String description,  int salary)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String companyName,  String location,  String description,  int salary,  String jobType,  int postDate,  int expireyDate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _JobEntity() when $default != null:
-return $default(_that.id,_that.title,_that.companyName,_that.location,_that.description,_that.salary);case _:
+return $default(_that.id,_that.title,_that.companyName,_that.location,_that.description,_that.salary,_that.jobType,_that.postDate,_that.expireyDate);case _:
   return orElse();
 
 }
@@ -179,10 +182,10 @@ return $default(_that.id,_that.title,_that.companyName,_that.location,_that.desc
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String companyName,  String location,  String description,  int salary)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String companyName,  String location,  String description,  int salary,  String jobType,  int postDate,  int expireyDate)  $default,) {final _that = this;
 switch (_that) {
 case _JobEntity():
-return $default(_that.id,_that.title,_that.companyName,_that.location,_that.description,_that.salary);case _:
+return $default(_that.id,_that.title,_that.companyName,_that.location,_that.description,_that.salary,_that.jobType,_that.postDate,_that.expireyDate);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +202,10 @@ return $default(_that.id,_that.title,_that.companyName,_that.location,_that.desc
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String companyName,  String location,  String description,  int salary)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String companyName,  String location,  String description,  int salary,  String jobType,  int postDate,  int expireyDate)?  $default,) {final _that = this;
 switch (_that) {
 case _JobEntity() when $default != null:
-return $default(_that.id,_that.title,_that.companyName,_that.location,_that.description,_that.salary);case _:
+return $default(_that.id,_that.title,_that.companyName,_that.location,_that.description,_that.salary,_that.jobType,_that.postDate,_that.expireyDate);case _:
   return null;
 
 }
@@ -214,7 +217,7 @@ return $default(_that.id,_that.title,_that.companyName,_that.location,_that.desc
 @JsonSerializable()
 
 class _JobEntity implements JobEntity {
-  const _JobEntity({required this.id, required this.title, required this.companyName, required this.location, required this.description, required this.salary});
+  const _JobEntity({required this.id, required this.title, required this.companyName, required this.location, required this.description, required this.salary, required this.jobType, required this.postDate, required this.expireyDate});
   factory _JobEntity.fromJson(Map<String, dynamic> json) => _$JobEntityFromJson(json);
 
 @override final  String id;
@@ -223,6 +226,9 @@ class _JobEntity implements JobEntity {
 @override final  String location;
 @override final  String description;
 @override final  int salary;
+@override final  String jobType;
+@override final  int postDate;
+@override final  int expireyDate;
 
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
@@ -237,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JobEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.salary, salary) || other.salary == salary));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _JobEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.companyName, companyName) || other.companyName == companyName)&&(identical(other.location, location) || other.location == location)&&(identical(other.description, description) || other.description == description)&&(identical(other.salary, salary) || other.salary == salary)&&(identical(other.jobType, jobType) || other.jobType == jobType)&&(identical(other.postDate, postDate) || other.postDate == postDate)&&(identical(other.expireyDate, expireyDate) || other.expireyDate == expireyDate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,companyName,location,description,salary);
+int get hashCode => Object.hash(runtimeType,id,title,companyName,location,description,salary,jobType,postDate,expireyDate);
 
 @override
 String toString() {
-  return 'JobEntity(id: $id, title: $title, companyName: $companyName, location: $location, description: $description, salary: $salary)';
+  return 'JobEntity(id: $id, title: $title, companyName: $companyName, location: $location, description: $description, salary: $salary, jobType: $jobType, postDate: $postDate, expireyDate: $expireyDate)';
 }
 
 
@@ -257,7 +263,7 @@ abstract mixin class _$JobEntityCopyWith<$Res> implements $JobEntityCopyWith<$Re
   factory _$JobEntityCopyWith(_JobEntity value, $Res Function(_JobEntity) _then) = __$JobEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String companyName, String location, String description, int salary
+ String id, String title, String companyName, String location, String description, int salary, String jobType, int postDate, int expireyDate
 });
 
 
@@ -274,7 +280,7 @@ class __$JobEntityCopyWithImpl<$Res>
 
 /// Create a copy of JobEntity
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? companyName = null,Object? location = null,Object? description = null,Object? salary = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? companyName = null,Object? location = null,Object? description = null,Object? salary = null,Object? jobType = null,Object? postDate = null,Object? expireyDate = null,}) {
   return _then(_JobEntity(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -282,6 +288,9 @@ as String,companyName: null == companyName ? _self.companyName : companyName // 
 as String,location: null == location ? _self.location : location // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,salary: null == salary ? _self.salary : salary // ignore: cast_nullable_to_non_nullable
+as int,jobType: null == jobType ? _self.jobType : jobType // ignore: cast_nullable_to_non_nullable
+as String,postDate: null == postDate ? _self.postDate : postDate // ignore: cast_nullable_to_non_nullable
+as int,expireyDate: null == expireyDate ? _self.expireyDate : expireyDate // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

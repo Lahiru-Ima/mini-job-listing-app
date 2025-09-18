@@ -13,6 +13,9 @@ _JobEntity _$JobEntityFromJson(Map<String, dynamic> json) => _JobEntity(
   location: json['location'] as String,
   description: json['description'] as String,
   salary: (json['salary'] as num).toInt(),
+  jobType: json['jobType'] as String,
+  postDate: (json['postDate'] as num).toInt(),
+  expireyDate: (json['expireyDate'] as num).toInt(),
 );
 
 Map<String, dynamic> _$JobEntityToJson(_JobEntity instance) =>
@@ -23,4 +26,7 @@ Map<String, dynamic> _$JobEntityToJson(_JobEntity instance) =>
       'location': instance.location,
       'description': instance.description,
       'salary': instance.salary,
+      'jobType': instance.jobType,
+      'postDate': instance.postDate,
+      'expireyDate': instance.expireyDate,
     };

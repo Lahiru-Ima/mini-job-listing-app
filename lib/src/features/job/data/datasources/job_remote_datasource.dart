@@ -16,8 +16,7 @@ class JobRemoteDataSourceImpl implements JobRemoteDataSource {
   Future<List<JobModel>> getJobData() async {
     try {
       Response response = await dioClient.public.get('/jobs');
-      print(response.data);
-      return jobModelFromJson(response.data);
+      return List<JobModel>.from(response.data.map((x) => JobModel.fromJson(x)));
     } on DioException catch (err) {
       throw ServerException.fromDioError(err);
     } catch (e) {
