@@ -8,6 +8,7 @@ import 'package:job_listing_app/src/features/job/data/datasources/job_remote_dat
 import 'package:job_listing_app/src/features/job/data/repositories/job_repository_impl.dart';
 import 'package:job_listing_app/src/features/job/domain/repositories/job_repository.dart';
 import 'package:job_listing_app/src/features/job/domain/usecases/get_all_jobs_usecase.dart';
+import 'package:job_listing_app/src/features/job/presentation/bloc/job_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -24,6 +25,8 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker.createInstance());
 
   /// Feature: Jobs Listing
+  //Blocs
+  sl.registerFactory(() => JobBloc(getAllJobsUseCase: sl()));
 
   // Usecases
   sl.registerLazySingleton<GetAllJobsUseCase>(() => GetAllJobsUseCase(repository: sl()));

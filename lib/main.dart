@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_listing_app/src/core/config/env_config.dart';
 import 'package:job_listing_app/src/core/di/injector.dart';
+import 'package:job_listing_app/src/features/job/presentation/pages/job_listing_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +17,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: JobListingPageWrapper(),
     );
   }
 }
