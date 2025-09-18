@@ -26,7 +26,7 @@ Future<void> initDependencies() async {
 
   /// Feature: Jobs Listing
   //Blocs
-  sl.registerFactory(() => JobBloc(getAllJobsUseCase: sl()));
+  sl.registerFactory(() => JobBloc(getAllJobsUseCase: sl(), prefs: sl()));
 
   // Usecases
   sl.registerLazySingleton<GetAllJobsUseCase>(() => GetAllJobsUseCase(repository: sl()));

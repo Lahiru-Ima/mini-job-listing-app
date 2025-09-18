@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:job_listing_app/src/features/job/domain/entities/job_entity.dart';
+import 'package:job_listing_app/src/features/job/presentation/bloc/job_bloc.dart';
 
 class JobDetailsPage extends StatelessWidget {
   final JobEntity job;
@@ -25,10 +27,16 @@ class JobDetailsPage extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: isTablet ? 24 : 18, color: theme.colorScheme.onSurface),
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.favorite_border, size: isTablet ? 28 : 24, color: theme.colorScheme.onSurface),
-            onPressed: () {},
-            tooltip: 'Add to Favorites',
+          BlocBuilder<JobBloc, JobState>(
+            builder: (context, state) {
+              final isFavorite = state.favoriteJobs.any((favJob) => favJob.id == job.id);
+              return IconButton(
+                icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border, size: isTablet ? 28 : 24, color: isFavorite ? theme.colorScheme.primary : theme.colorScheme.onSurface),
+                onPressed: () {
+                  context.read<JobBloc>().add(ToggleFavoriteEvent(job));
+                },
+              );
+            },
           ),
         ],
         backgroundColor: theme.colorScheme.surface,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_listing_app/src/core/di/injector.dart';
 import 'package:job_listing_app/src/core/enums/bloc_state_status.dart';
 import 'package:job_listing_app/src/features/job/presentation/bloc/job_bloc.dart';
+import 'package:job_listing_app/src/features/job/presentation/pages/favorite_jobs_page.dart';
 import 'package:job_listing_app/src/features/job/presentation/widgets/job_card.dart';
 import 'package:job_listing_app/src/shared/theme/theme_cubit.dart';
 
@@ -54,8 +55,15 @@ class _JobListingPageState extends State<JobListingPage> {
         actions: [
           IconButton(
             icon: Icon(Icons.favorite_border, size: isTablet ? 28 : 24),
-            onPressed: () {},
-            tooltip: 'WishList',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => BlocProvider.value(value: context.read<JobBloc>(), child: const FavoriteJobsPage()),
+                ),
+              );
+            },
+            tooltip: 'Favorites',
           ),
           BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, themeState) {

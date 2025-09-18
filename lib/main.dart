@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:job_listing_app/src/core/config/env_config.dart';
 import 'package:job_listing_app/src/core/di/injector.dart';
 import 'package:job_listing_app/src/core/theme/app_theme.dart';
+import 'package:job_listing_app/src/features/job/presentation/bloc/job_bloc.dart';
 import 'package:job_listing_app/src/features/job/presentation/pages/job_listing_page.dart';
 import 'package:job_listing_app/src/shared/theme/theme_cubit.dart';
 
@@ -18,8 +19,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeCubit(sl())..load(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ThemeCubit(sl())..load()),
+        BlocProvider(create: (context) => sl<JobBloc>()),
+      ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, themeState) {
           return MaterialApp(
