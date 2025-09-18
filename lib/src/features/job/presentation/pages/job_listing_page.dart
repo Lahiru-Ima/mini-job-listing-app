@@ -70,6 +70,9 @@ class _JobListingPageState extends State<JobListingPage> {
                 Expanded(
                   child: TextField(
                     controller: _searchController,
+                    onSubmitted: (value) {
+                      context.read<JobBloc>().add(SearchJobsEvent(value));
+                    },
                     decoration: InputDecoration(
                       hintText: 'Search jobs...',
                       hintStyle: TextStyle(fontSize: isTablet ? 16 : 14, color: Colors.grey[500]),
@@ -87,7 +90,9 @@ class _JobListingPageState extends State<JobListingPage> {
                 SizedBox(
                   width: size.width * 0.3,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<JobBloc>().add(SearchJobsEvent(_searchController.text.trim()));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF8B5A96),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
