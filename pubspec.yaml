@@ -1,0 +1,49 @@
+name: job_listing_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_bloc: ^9.1.1
+
+  # Dependency Injection
+  get_it: ^8.2.0
+  injectable: ^2.5.1
+
+  # Network
+  dio: ^5.9.0
+  internet_connection_checker: ^3.0.1
+
+  # Caching
+  shared_preferences: ^2.5.3
+
+  # Serialization
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.9.0
+  flutter_dotenv: ^6.0.0
+
+  # Utilities
+  equatable: ^2.0.7
+  dartz: ^0.10.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.8.0
+  freezed: ^3.2.3
+  json_serializable: ^6.11.1
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - .env
