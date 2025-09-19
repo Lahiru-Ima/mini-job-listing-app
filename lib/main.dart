@@ -22,7 +22,7 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ThemeCubit(sl())..load()),
-        BlocProvider(create: (context) => sl<JobBloc>()),
+        BlocProvider(create: (context) => sl<JobBloc>()..add(GetJobsEvent())),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, themeState) {
@@ -32,7 +32,7 @@ class MainApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             themeMode: themeState.mode,
             debugShowCheckedModeBanner: false,
-            home: const JobListingPageWrapper(),
+            home: const JobListingPage(),
           );
         },
       ),

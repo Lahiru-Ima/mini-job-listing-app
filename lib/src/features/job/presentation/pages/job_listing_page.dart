@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:job_listing_app/src/core/di/injector.dart';
 import 'package:job_listing_app/src/core/enums/bloc_state_status.dart';
 import 'package:job_listing_app/src/features/job/presentation/bloc/job_bloc.dart';
 import 'package:job_listing_app/src/features/job/presentation/pages/favorite_jobs_page.dart';
 import 'package:job_listing_app/src/features/job/presentation/widgets/job_card.dart';
 import 'package:job_listing_app/src/shared/theme/theme_cubit.dart';
-
-class JobListingPageWrapper extends StatelessWidget {
-  const JobListingPageWrapper({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<JobBloc>(create: (context) => sl<JobBloc>()..add(GetJobsEvent()), child: JobListingPage());
-  }
-}
 
 class JobListingPage extends StatefulWidget {
   const JobListingPage({super.key});
