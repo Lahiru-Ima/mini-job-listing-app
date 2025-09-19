@@ -119,7 +119,8 @@ class _JobListingPageState extends State<JobListingPage> {
                       return JobCard(job: job, size: size, isTablet: isTablet);
                     },
                   );
-                } else {
+                } 
+                else {
                   return const SizedBox.shrink();
                 }
               },

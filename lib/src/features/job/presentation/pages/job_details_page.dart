@@ -48,7 +48,6 @@ class JobDetailsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: isTablet ? 24 : 16),
-
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Card(
@@ -59,7 +58,6 @@ class JobDetailsPage extends StatelessWidget {
                     children: [
                       Text(job.title, style: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, height: 1.3)),
                       const SizedBox(height: 20),
-
                       Row(
                         children: [
                           Icon(Icons.work_outline, size: 18, color: theme.colorScheme.onSurface.withOpacity(0.7)),
@@ -78,7 +76,6 @@ class JobDetailsPage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-
                       Row(
                         children: [
                           Icon(Icons.access_time, size: 18, color: theme.colorScheme.onSurface.withOpacity(0.7)),
@@ -87,7 +84,6 @@ class JobDetailsPage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 20),
-
                       Wrap(
                         spacing: 12,
                         runSpacing: 8,
@@ -160,13 +156,10 @@ class JobDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 32),
           ],
         ),
       ),
-
-      // Apply Button
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -194,7 +187,6 @@ class JobDetailsPage extends StatelessWidget {
 
   void _showApplyDialog(BuildContext context) {
     final theme = Theme.of(context);
-
     showDialog(
       context: context,
       builder: (BuildContext context) {

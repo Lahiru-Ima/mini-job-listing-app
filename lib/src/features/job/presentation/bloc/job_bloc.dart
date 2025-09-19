@@ -50,7 +50,6 @@ class JobBloc extends Bloc<JobEvent, JobState> {
 
   Future<void> _onSearchJobsEvent(SearchJobsEvent event, Emitter<JobState> emit) async {
     emit(state.copyWith(status: BlocStateStatus.loadInProgress));
-
     try {
       if (event.query.isEmpty) {
         emit(state.copyWith(status: BlocStateStatus.loadSuccess, jobData: _allJobs));
@@ -72,7 +71,6 @@ class JobBloc extends Bloc<JobEvent, JobState> {
 
   Future<void> _onLoadFavoritesEvent(LoadFavoritesEvent event, Emitter<JobState> emit) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final favoritesJson = prefs.getStringList(_favoritesKey) ?? [];
 
       final favoriteJobs = favoritesJson.map((jsonString) {
@@ -88,7 +86,6 @@ class JobBloc extends Bloc<JobEvent, JobState> {
 
   Future<void> _onToggleFavoriteEvent(ToggleFavoriteEvent event, Emitter<JobState> emit) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final currentFavorites = List<JobEntity>.from(state.favoriteJobs);
 
       if (state.favoriteJobs.any((job) => job.id == event.job.id)) {
@@ -108,7 +105,6 @@ class JobBloc extends Bloc<JobEvent, JobState> {
 
   Future<void> _onRemoveFavoriteEvent(RemoveFavoriteEvent event, Emitter<JobState> emit) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       final currentFavorites = state.favoriteJobs.where((job) => job.id != event.jobId).toList();
 
       final favoritesJson = currentFavorites.map((job) => json.encode(job.toJson())).toList();
@@ -122,7 +118,6 @@ class JobBloc extends Bloc<JobEvent, JobState> {
 
   Future<void> _onClearAllFavoritesEvent(ClearAllFavoritesEvent event, Emitter<JobState> emit) async {
     try {
-      final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_favoritesKey);
       emit(state.copyWith(favoriteJobs: []));
     } catch (e) {
