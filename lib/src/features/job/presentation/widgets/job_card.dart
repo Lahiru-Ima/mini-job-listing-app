@@ -14,7 +14,17 @@ class JobCard extends StatelessWidget {
     final theme = Theme.of(context);
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute<void>(builder: (context) => JobDetailsPage(job: job)));
+        // Navigator.push(context, MaterialPageRoute<void>(builder: (context) => JobDetailsPage(job: job)));
+        Navigator.push(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => JobDetailsPage(job: job),
+            transitionDuration: Duration(milliseconds: 500),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
